@@ -15,7 +15,7 @@ version='Network Scanner v0.5')
 help='defines if you want classic scan or full one')
     parser.add_argument('-t', '--target', \
 help='host to scan (Ex: 192.168.1.1, 192.168.1.5-10, 192.168.1.0/24)')
-    parser.add_argument('-T', '--timeout', help='changes timeout for socket')
+    parser.add_argument('-T', '--timeout', help='changes timeout for socket', type=float)
     args_namespace = parser.parse_args()
     if args_namespace.target is None:
         exit('Please use -h to see usage')
@@ -23,7 +23,7 @@ help='host to scan (Ex: 192.168.1.1, 192.168.1.5-10, 192.168.1.0/24)')
     if args_namespace.timeout is None:
         setdefaulttimeout(0.1)
     else:
-        setdefaulttimeout(float(args_namespace.timeout))
+        setdefaulttimeout(args_namespace.timeout)
     # HANDLE PORT LIST TO SCAN
     if args_namespace.full and args_namespace.port :
         exit('Can\'t use --full with --port')
