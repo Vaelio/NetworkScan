@@ -50,11 +50,13 @@ int(args_namespace.port.split('-')[1])+1)
         port_list = [21, 22, 25, 53, 80, 443, 8000, 8080, 8081, 8443]
     # HANDLE HOST LIST TO SCAN
     if ',' in args_namespace.target:
-        # 10.10.10.10, 10.10.10.11
         for item in args_namespace.target.split(','):
             host_discovery(item, port_list)
     else:
         # target = 192.168.0/24 OU target = 10.10.10.10
         host_discovery(args_namespace.target, port_list)
 if __name__ == '__main__':
-    init()
+    try:
+        init()
+    except KeyboardInterrupt:
+        exit(0)
